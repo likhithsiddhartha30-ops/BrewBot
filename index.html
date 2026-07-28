@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Brew Bot — AI Voice Agent</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="style.css?v=5" />
+</head>
+<body>
+
+  <!-- Backdrop the glass refracts -->
+  <div class="bg-scene" aria-hidden="true"></div>
+  <div class="bg-blobs" aria-hidden="true">
+    <span class="blob blob-1"></span>
+    <span class="blob blob-2"></span>
+    <span class="blob blob-3"></span>
+    <span class="blob blob-4"></span>
+  </div>
+  <div class="bg-grain" aria-hidden="true"></div>
+
+  <!-- Scattered coffee-bean doodles, purely decorative -->
+  <div class="bg-beans" aria-hidden="true">
+    <svg class="bean bean-1" viewBox="0 0 40 60" width="40" height="60" fill="none"><path d="M20 2C9 2 2 16 2 30s7 28 18 28 18-14 18-28S31 2 20 2Z" stroke="currentColor" stroke-width="2.4"/><path d="M20 5c-6 8-6 22 0 30s6 22 0 20" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+    <svg class="bean bean-2" viewBox="0 0 40 60" width="28" height="42" fill="none"><path d="M20 2C9 2 2 16 2 30s7 28 18 28 18-14 18-28S31 2 20 2Z" stroke="currentColor" stroke-width="2.4"/><path d="M20 5c-6 8-6 22 0 30s6 22 0 20" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+    <svg class="bean bean-3" viewBox="0 0 40 60" width="34" height="50" fill="none"><path d="M20 2C9 2 2 16 2 30s7 28 18 28 18-14 18-28S31 2 20 2Z" stroke="currentColor" stroke-width="2.4"/><path d="M20 5c-6 8-6 22 0 30s6 22 0 20" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+    <svg class="bean bean-4" viewBox="0 0 40 60" width="24" height="36" fill="none"><path d="M20 2C9 2 2 16 2 30s7 28 18 28 18-14 18-28S31 2 20 2Z" stroke="currentColor" stroke-width="2.4"/><path d="M20 5c-6 8-6 22 0 30s6 22 0 20" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+  </div>
+
+  <header class="topbar">
+    <div class="brand">
+      <span class="brand-dot"></span>
+      BREW BOT
+    </div>
+    <span class="badge glass-chip">AI Voice Agent</span>
+  </header>
+
+  <main class="stage">
+    <div class="stack">
+
+      <!-- Hero panel -->
+      <section class="panel panel-hero">
+        <div class="panel-top">
+          <div class="coffee-badge">
+            <svg class="steam" viewBox="0 0 40 30" width="30" height="22" fill="none" aria-hidden="true">
+              <path class="steam-path steam-1" d="M12 28c-4-4 4-6 0-11S12 6 8 2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              <path class="steam-path steam-2" d="M22 28c-4-4 4-6 0-11S22 6 18 2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              <path class="steam-path steam-3" d="M32 28c-4-4 4-6 0-11S32 6 28 2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+            <svg viewBox="0 0 64 64" width="34" height="34" fill="none" aria-hidden="true">
+              <g stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M13 27h31v13a11 11 0 0 1-11 11H24a11 11 0 0 1-11-11V27Z" />
+                <path d="M44 31h4.5a6.5 6.5 0 0 1 0 13H44" />
+                <path d="M22 21c-1.6-3 1.6-4.6 0-7.6" opacity=".9" />
+                <path d="M30.5 21c-1.6-3 1.6-4.6 0-7.6" opacity=".9" />
+                <path d="M39 21c-1.6-3 1.6-4.6 0-7.6" opacity=".9" />
+              </g>
+            </svg>
+          </div>
+          <span class="live-pill"><span class="live-dot"></span>Online</span>
+        </div>
+
+        <p class="eyebrow">Your barista on the line</p>
+        <h1>Talk to Brew&nbsp;Bot</h1>
+        <p class="subtitle">Tap the microphone and start speaking. Brew Bot listens, thinks, and replies out loud in real time.</p>
+
+        <div class="orb-wrap">
+          <div class="orb-ring" id="orbRing"></div>
+          <button id="micButton" class="mic-button" aria-label="Start call">
+            <svg id="micIcon" viewBox="0 0 24 24" fill="none" width="34" height="34">
+              <path d="M12 15a3 3 0 0 0 3-3V6a3 3 0 0 0-6 0v6a3 3 0 0 0 3 3Z" stroke="currentColor" stroke-width="1.8"/>
+              <path d="M19 11a7 7 0 0 1-14 0" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+              <path d="M12 18v3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+            </svg>
+            <svg id="stopIcon" viewBox="0 0 24 24" fill="none" width="26" height="26" style="display:none">
+              <rect x="6" y="6" width="12" height="12" rx="2" fill="currentColor"/>
+            </svg>
+          </button>
+        </div>
+
+        <p class="status" id="statusText">Tap to start</p>
+      </section>
+
+      <!-- Tile row -->
+      <div class="panel-row">
+        <section class="panel panel-tile">
+          <span class="tile-label">Voice</span>
+          <p class="tile-value">Warm &middot; English</p>
+          <p class="tile-sub">Natural, low-latency speech</p>
+          <span class="waveform" aria-hidden="true">
+            <span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+          </span>
+        </section>
+        <section class="panel panel-tile panel-tile-alt">
+          <span class="tile-plus" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="17" height="17" fill="none">
+              <path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </span>
+          <p class="tile-sub">Ask about the menu, opening hours, or place an order.</p>
+        </section>
+      </div>
+
+      <!-- Live transcript -->
+      <section class="panel panel-transcript">
+        <div class="transcript-head">
+          <span class="transcript-title">
+            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" aria-hidden="true">
+              <path d="M4 5h16M4 12h16M4 19h10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+            Transcript
+          </span>
+          <span class="transcript-hint" id="transcriptHint">Live</span>
+        </div>
+        <div class="transcript-body" id="transcriptBody">
+          <div class="transcript-empty" id="transcriptEmpty">
+            <svg viewBox="0 0 64 48" width="52" height="39" fill="none" aria-hidden="true">
+              <path class="doodle-steam" d="M24 6c-2.6-2.4 2.4-3.6 0-6.8M32 6c-2.6-2.4 2.4-3.6 0-6.8M40 6c-2.6-2.4 2.4-3.6 0-6.8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" opacity=".5"/>
+              <path d="M16 14h28v10a13 13 0 0 1-13 13h-2a13 13 0 0 1-13-13V14Z" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round" opacity=".55"/>
+              <path d="M44 18h4a5 5 0 0 1 0 10h-4" stroke="currentColor" stroke-width="2.2" opacity=".55"/>
+              <path d="M14 40c8-5 28-5 36 0" stroke="currentColor" stroke-width="2" stroke-linecap="round" opacity=".3"/>
+            </svg>
+            <p>Your conversation with Brew Bot will show up here once you start talking.</p>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <footer class="footnote">
+    <svg class="footnote-bean" viewBox="0 0 40 60" width="10" height="15" fill="none" aria-hidden="true"><path d="M20 2C9 2 2 16 2 30s7 28 18 28 18-14 18-28S31 2 20 2Z" stroke="currentColor" stroke-width="3"/><path d="M20 5c-6 8-6 22 0 30s6 22 0 20" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></svg>
+    Powered by Vapi &middot; Brew Bot
+  </footer>
+
+  <!-- script.js imports the Vapi Web SDK itself (ES module) -->
+  <script type="module" src="script.js"></script>
+</body>
+</html>
