@@ -1,8 +1,8 @@
 // ── Vapi credentials ────────────────────────────────────────────────────
 // The public key is safe to expose in client-side code -- it only allows
 // starting calls with assistants you own, nothing account-sensitive.
-const VAPI_PUBLIC_KEY = "3388caa0-5327-423e-ab13-f79c5480ee80";
-const VAPI_ASSISTANT_ID = "f60a01ba-ca4d-4b28-a5d4-8f54a0c523dc";
+const VAPI_PUBLIC_KEY = "cfaa7124-56a7-402d-8e7a-6aa9ceb5591d";
+const VAPI_ASSISTANT_ID = "d25d998c-9551-4e4c-b07a-5da5d4496474";
 // ────────────────────────────────────────────────────────────────────────
 //
 // NOTE: this page must be served over http://localhost or https:// --
